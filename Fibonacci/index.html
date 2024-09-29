@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci en Tafelkaart</title>
+</head>
+<body>
+
+    <h1>Fibonacci-reeks en Tafelkaart Generator</h1>
+
+    <div>
+        <h2>Fibonacci-reeks</h2>
+        <button onclick="genereerFibonacci()">Genereer Fibonacci-reeks</button>
+        <p id="fibonacci-resultaat"></p>
+    </div>
+
+    <div>
+        <h2>Tafelkaart</h2>
+        <button onclick="genereerTafelkaart()">Genereer Tafelkaart</button>
+        <pre id="tafelkaart-resultaat"></pre>
+    </div>
+
+    <script>
+        function genereerFibonacci() {
+            let n = parseInt(prompt("Voer een getal in voor de Fibonacci-reeks:"));
+            if (n < 1) {
+                alert("Voer een positief getal in.");
+                return;
+            }
+
+            let resultaat = [];
+            let a = 0, b = 1;
+            
+            for (let i = 0; i < n; i++) {
+                resultaat.push(a);
+                let next = a + b;
+                a = b;
+                b = next;
+            }
+            
+            document.getElementById("fibonacci-resultaat").innerText = resultaat.join(", ");
+        }
+
+        function genereerTafelkaart() {
+            let n = parseInt(prompt("Voer een getal in voor de tafelkaart:"));
+            if (n < 1) {
+                alert("Voer een positief getal in.");
+                return;
+            }
+
+            let header = "Tafel van\t";
+            for (let i = 1; i <= n; i++) {
+                header += i + "\t";
+            }
+            let resultaat = header + "\n";
+            
+            for (let i = 1; i <= n; i++) {
+                let row = i + "\t"; 
+                for (let j = 1; j <= n; j++) {
+                    row += (i * j) + "\t"; 
+                }
+                resultaat += row + "\n"; 
+            }
+            
+            document.getElementById("tafelkaart-resultaat").innerText = resultaat;
+        }
+    </script>
+
+</body>
+</html>
